@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pineapple/app/profile/profile_edit.dart';
+import 'package:pineapple/app/profile/profile_view.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -36,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor:
             Theme.of(context).scaffoldBackgroundColor, // Match background
         elevation: 0, // No shadow
+        centerTitle: true,
         title: const Text(
           'Pineapple', // App Title
           style: TextStyle(
@@ -46,16 +48,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.credit_card_outlined,
-              color: Colors.black54,
-            ), // Card/ID icon
-            tooltip: 'Wallet/ID', // Accessibility
-            onPressed: () {
-              /* Handle card icon press */
-            },
-          ),
           IconButton(
             icon: const Icon(
               Icons.settings_outlined,
@@ -109,12 +101,23 @@ class _ProfilePageState extends State<ProfilePage> {
 
             // Event History Button
             _buildOptionButton(
-              icon: Icons.event_note_outlined,
+              icon: Icons.history_outlined,
               text: 'Event history',
-              color: const Color(0xFFB2EBF2), // Light cyan/blue
+              color: Colors.white, // Light cyan/blue
               onTap: () {
                 /* Handle Event History tap */
               },
+              borderColor: Colors.grey.shade300, // Add border for white button
+            ),
+            const SizedBox(height: 16),
+            _buildOptionButton(
+              icon: Icons.upcoming_outlined,
+              text: 'Upcoming Events',
+              color: Colors.white, // Light cyan/blue
+              onTap: () {
+                /* Handle Event History tap */
+              },
+              borderColor: Colors.grey.shade300, // Add border for white button
             ),
             const SizedBox(height: 16),
 
@@ -137,38 +140,6 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 20), // Bottom padding
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event_note_outlined),
-            activeIcon: Icon(Icons.event_note),
-            label: 'Events',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            activeIcon: Icon(Icons.favorite),
-            label: 'Likes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.chat_bubble),
-            activeIcon: Icon(CupertinoIcons.chat_bubble_fill),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedBottomNavIndex,
-        onTap: _onBottomNavItemTapped,
-        // Styling is applied via ThemeData
       ),
     );
   }
@@ -210,7 +181,10 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           TextButton(
             onPressed: () {
-              /* Handle View profile */
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileViewPage()),
+              );
             },
             child: const Text(
               'View',

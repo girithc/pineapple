@@ -54,20 +54,27 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
         backgroundColor: theme.scaffoldBackgroundColor,
         surfaceTintColor: theme.scaffoldBackgroundColor,
         // Assuming a back button would navigate here, so no explicit back button
-        leading: IconButton(
-          // Add a back button for navigation
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () => Navigator.of(context).pop(), // Standard back action
+        leading: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+          child: IconButton(
+            // Add a back button for navigation
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed:
+                () => Navigator.of(context).pop(), // Standard back action
+          ),
         ),
         title: Text('Edit Profile'), // Show first name in AppBar
         centerTitle: true,
         actions: [
-          TextButton(
-            onPressed: () {
-              // Handle Done action - save changes, navigate back etc.
-              Navigator.of(context).pop(); // Example: just navigate back
-            },
-            child: const Text('Done'),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+            child: TextButton(
+              onPressed: () {
+                // Handle Done action - save changes, navigate back etc.
+                Navigator.of(context).pop(); // Example: just navigate back
+              },
+              child: const Text('Done'),
+            ),
           ),
           const SizedBox(width: 8),
         ],

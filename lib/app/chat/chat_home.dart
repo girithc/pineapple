@@ -90,13 +90,13 @@ class _ChatHomePageState extends State<ChatHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // No standard AppBar, using Column in body for custom header
+      // Match background),
       body: SafeArea(
         // Ensures content doesn't overlap status bar
         child: Column(
           children: [
             // Custom Header Section (Segmented Control + Search)
             _buildCustomHeader(context),
-
             // Chat List (or Match list based on segment)
             Expanded(
               child:
@@ -148,7 +148,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
               pressedColor: const Color(0xFFE0BBE4).withOpacity(0.2),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 32),
           // Search Bar
           Container(
             width: maxWidth,
