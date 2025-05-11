@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pineapple/app/event/event_list.dart';
 import 'package:pineapple/app/profile/profile_edit.dart';
 import 'package:pineapple/app/profile/profile_view.dart';
 
@@ -115,7 +116,10 @@ class _ProfilePageState extends State<ProfilePage> {
               text: 'Upcoming Events',
               color: Colors.white, // Light cyan/blue
               onTap: () {
-                /* Handle Event History tap */
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EventsPage()),
+                );
               },
               borderColor: Colors.grey.shade300, // Add border for white button
             ),

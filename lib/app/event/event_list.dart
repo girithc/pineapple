@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pineapple/app/event/event_register.dart';
+import 'package:pineapple/app/event/event_saved.dart';
 
 // The main EventsPage widget
 class EventsPage extends StatefulWidget {
@@ -79,7 +80,10 @@ class _EventsPageState extends State<EventsPage> {
               ),
               tooltip: 'Saved', // Tooltip for accessibility
               onPressed: () {
-                // Handle Saved action
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EventsSavePage()),
+                );
               },
             ),
           ),
@@ -189,6 +193,7 @@ class _EventsPageState extends State<EventsPage> {
                   location: eventData['location']!,
                   name: eventData['name']!,
                   date: eventData['date']!,
+                  isSaved: false, // Placeholder
                 ),
               ),
             ),
@@ -232,6 +237,7 @@ class EventCard extends StatelessWidget {
   final String location;
   final String name;
   final String date;
+  final bool isSaved;
 
   const EventCard({
     super.key,
@@ -239,6 +245,7 @@ class EventCard extends StatelessWidget {
     required this.location,
     required this.name,
     required this.date,
+    required this.isSaved,
   });
 
   @override
@@ -353,11 +360,17 @@ class EventCard extends StatelessWidget {
             right: 15,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.4),
+                color:
+                    isSaved
+                        ? Theme.of(context).scaffoldBackgroundColor
+                        : Colors.black.withOpacity(0.4),
                 shape: BoxShape.circle,
               ),
               child: IconButton(
-                icon: const Icon(Icons.bookmark_border, color: Colors.white),
+                icon: Icon(
+                  isSaved ? Icons.bookmark : Icons.bookmark_border,
+                  color: isSaved ? Colors.pinkAccent : Colors.white,
+                ),
                 iconSize: 24,
                 tooltip: 'Save Event',
                 onPressed: () {
